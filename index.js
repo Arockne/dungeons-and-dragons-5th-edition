@@ -52,6 +52,80 @@ function createItem(item) {
   const header = regex.exec(item.url)[1];
   //if the current header is (example ability scores)
     //create ability score
+  switch(header) {
+    case 'ability-scores':
+      //createAbility
+      break;
+    case 'alignments':
+      //createAlignment
+      break;
+    case 'backgrounds':
+      //createBackground
+      break;
+    case 'classes':
+      //createClass
+      break;
+    case 'conditions':
+      //createCondition
+      break;
+    case 'damage-types':
+      //createDamageType
+      break;
+    case 'equipment-categories':
+      //createEquipmentCategory
+      break;
+    case 'equipment':
+      //createEquipment
+      break;
+    case 'feats':
+      //createFeat
+      break;
+    case 'features':
+      //createFeature
+      break;
+    case 'languages':
+      //createLanguage
+      break;
+    case 'magic-items':
+      //createMagicItem;
+      break;
+    case 'magic-schools':
+      //createMagicSchool
+      break;
+    case 'monsters':
+      //createMonster
+      break;
+    case 'proficiencies':
+      //createProficiency
+      break;
+    case 'races':
+      //createRace
+      break;
+    case 'rules':
+      //createRule
+      break;
+    case 'rule-sections':
+      //createRuleSection
+      break;
+    case 'skills':
+      //createSkill
+      break;
+    case 'spells':
+      //createSpell
+      break;
+    case 'subclasses':
+      //createSubclass
+      break;
+    case 'subraces':
+      //createSubrace
+      break;
+    case 'traits':
+      //createTrait
+      break;
+    case 'weapon-properties':
+      //createWeaponProperty
+      break;
+  }
 }
 
 
