@@ -13,20 +13,33 @@ function getCategories() {
   })
 }
 
+function getSubCategory(category) {
+  fetch(`https://www.dnd5eapi.co/api/${category}`)
+  .then(resp => {
+    if (!resp.ok) throw resp
+    return resp.json();
+  })
+  .then(sub => console.log(sub))
+  .catch(err => {
+    const message = `Error type: (${err.type}) Fetch from: (${err.url}) Status: (${err.status})`
+    document.querySelector('body').textContent = message;
+  })
+}
+
 function handleCategories(categories) {
-  //convert object to an array of arrays
-  //for each category
-    //create a list element
-      //label the li the current category
-  //append the list element to the categories-container
-  const categoriesArray = Object.entries(categories);
-  categoriesArray.forEach(category => {
+  const categoriesArr = Object.keys(categories);
+  categoriesArr.forEach(category => {
     const li = document.createElement('li');
-    li.textContent = category[0].replace(/-/, ' ');
-    li.className = category[0];
+    li.textContent = category.replace(/-/, ' ');
+    li.className = category;
+    li.addEventListener('click', () => getSubCategory(category))
+    //posibly add span for an arrow when li element is clicked it will point down when li element is clicked and point left when subcategories are not shoing
     document.querySelector('#categories-container').appendChild(li);
   })
 }
+
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
   getCategories();
