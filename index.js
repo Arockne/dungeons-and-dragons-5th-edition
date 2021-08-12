@@ -27,13 +27,17 @@ function getSet(header) {
 }
 
 function getItem(set) {
-  fetch(`https://www.dnd5eapi.co${set.url}`)
+  const url = set.url[0] === '/' ? set.url : `/${set.url}`;
+  const address = `https://www.dnd5eapi.co${url}`;
+  console.log(address);
+  fetch(address)
   .then(resp => resp.json())
   .then(item => createItem(item))
-  .catch(err => {
-    const message = `Error type: (${err.type}) Fetch from: (${err.url}) Status: (${err.status})`
-    document.querySelector('body').textContent = message;
-  })
+  // .then(item => createItem(item))
+  // .catch(err => {
+  //   const message = `Error type: (${err.type}) Fetch from: (${err.url}) Status: (${err.status})`
+  //   document.querySelector('body').textContent = message;
+  // })
 }
 
 function handleHeadings(headers) {
@@ -48,11 +52,12 @@ function handleHeadings(headers) {
 }
 
 function createItem(item) {
-  const regex = /\/api\/(\w+[-]?\w+)\//;
+  const regex = /\/?api\/(\w+[-]?\w+)\//;
   const header = regex.exec(item.url)[1];
   //if the current header is (example ability scores)
     //create ability score
-  switch(header) {
+  console.log(item)
+  switch(true) {
     case 'ability-scores':
       //createAbility
       break;
