@@ -1,3 +1,19 @@
 body {
   background-color: blanchedalmond;
 }
+
+li {
+  list-style-type: none;
+  width: 20%;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+li:hover {
+  background-color: black;
+  color: white;
+}
+
+#information-container {
+  display: flex;
+  flex-direction: column;
+}
