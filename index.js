@@ -29,7 +29,7 @@ function getSet(category) {
 function getItem(set) {
   fetch(`https://www.dnd5eapi.co${set.url}`)
   .then(resp => resp.json())
-  .then(item => console.log(item))
+  .then(item => createItem(item))
   .catch(err => {
     const message = `Error type: (${err.type}) Fetch from: (${err.url}) Status: (${err.status})`
     document.querySelector('body').textContent = message;
@@ -43,12 +43,16 @@ function handleHeadings(categories) {
     li.textContent = category.replace(/-/, ' ');
     li.className = category;
     li.addEventListener('click', () => getSet(category))
-    //posibly add span for an arrow when li element is clicked it will point down when li element is clicked and point left when subcategories are not shoing
     document.querySelector('#categories-container').appendChild(li);
   })
 }
 
-
+function createItem(item) {
+  const regex = /\/api\/(\w+[-]?\w+)\//;
+  const header = regex.exec(item.url)[1];
+  //if the current header is (example ability scores)
+    //create ability score
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -63,3 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
 //3 seperate event listeners
 //some interactivity is required
 //keep code DRY
+
+
+    //posibly add span for an arrow when li element is clicked it will point down when li element is clicked and point left when subcategories are not shoing
