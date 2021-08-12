@@ -1,5 +1,5 @@
 //when the page loads append categories to categories container
-//add an event listener when the category is clicked a dropdown of subcategories for that category will load
+//add an event listener when the header is clicked a dropdown of subcategories for that header will load
 function getHeadings() {
   fetch('https://www.dnd5eapi.co/api/')
   .then(resp => {
@@ -13,8 +13,8 @@ function getHeadings() {
   })
 }
 
-function getSet(category) {
-  fetch(`https://www.dnd5eapi.co/api/${category}`)
+function getSet(header) {
+  fetch(`https://www.dnd5eapi.co/api/${header}`)
   .then(resp => {
     if (!resp.ok) throw resp
     return resp.json();
@@ -36,13 +36,13 @@ function getItem(set) {
   })
 }
 
-function handleHeadings(categories) {
-  const categoriesArr = Object.keys(categories);
-  categoriesArr.forEach(category => {
+function handleHeadings(headers) {
+  const headerArr = Object.keys(headers);
+  headerArr.forEach(header => {
     const li = document.createElement('li');
-    li.textContent = category.replace(/-/, ' ');
-    li.className = category;
-    li.addEventListener('click', () => getSet(category))
+    li.textContent = header.replace(/-/, ' ');
+    li.className = header;
+    li.addEventListener('click', () => getSet(header))
     document.querySelector('#categories-container').appendChild(li);
   })
 }
