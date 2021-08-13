@@ -139,14 +139,20 @@ function createAbility(item) {
   description.textContent = item.desc;
 
   const skillList = document.createElement('ul');
-  skillList.innerHTML = '<h3>Skills</h3>'
+  skillList.innerHTML = '<li><h4>Skills</h4></li>'
   item.skills.forEach(skill => {
     const li = document.createElement('li');
     li.textContent = skill.name;
     skillList.appendChild(li);
   })
 
-  const ability = document.createElement('li')
+  if (skillList.children.length <= 1) {
+    const li = document.createElement('li');
+    li.innerText = 'None';
+    skillList.appendChild(li);
+  }
+
+  const ability = document.createElement('div')
   ability.append(heading, description, skillList)
   document.querySelector('#item-list').appendChild(ability);
 }
