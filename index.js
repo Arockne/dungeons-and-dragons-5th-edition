@@ -29,11 +29,12 @@ function getSet(header) {
 function getItem(set) {
   const url = set.url[0] === '/' ? set.url : `/${set.url}`;
   const address = `https://www.dnd5eapi.co${url}`;
-  console.log(address);
   fetch(address)
-  .then(resp => resp.json())
+  .then(resp => {
+    //if (!resp.ok) throw resp;
+    return resp.json()
+  })
   .then(item => createItem(item))
-  // .then(item => createItem(item))
   // .catch(err => {
   //   const message = `Error type: (${err.type}) Fetch from: (${err.url}) Status: (${err.status})`
   //   document.querySelector('body').textContent = message;
@@ -47,19 +48,16 @@ function handleHeadings(headers) {
     li.textContent = header.replace(/-/, ' ');
     li.className = header;
     li.addEventListener('click', () => getSet(header))
-    document.querySelector('#categories-container').appendChild(li);
+    document.querySelector('#header-container').appendChild(li);
   })
 }
 
 function createItem(item) {
   const regex = /\/?api\/(\w+[-]?\w+)\//;
   const header = regex.exec(item.url)[1];
-  //if the current header is (example ability scores)
-    //create ability score
-  console.log(item)
-  switch(true) {
+  switch(header) {
     case 'ability-scores':
-      //createAbility
+      createAbility(item);
       break;
     case 'alignments':
       //createAlignment
@@ -133,6 +131,25 @@ function createItem(item) {
   }
 }
 
+function createAbility(item) {
+  const heading = document.createElement('h3');
+  heading.textContent = item.full_name;
+
+  const description = document.createElement('p');
+  description.textContent = item.desc;
+
+  const skillList = document.createElement('ul');
+  skillList.innerHTML = '<h3>Skills</h3>'
+  item.skills.forEach(skill => {
+    const li = document.createElement('li');
+    li.textContent = skill.name;
+    skillList.appendChild(li);
+  })
+
+  const ability = document.createElement('li')
+  ability.append(heading, description, skillList)
+  document.querySelector('#item-list').appendChild(ability);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   getHeadings();
