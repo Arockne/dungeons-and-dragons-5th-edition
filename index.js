@@ -1,5 +1,4 @@
-//when the page loads append categories to categories container
-//add an event listener when the header is clicked a dropdown of subcategories for that header will load
+
 function getHeadings() {
   fetch('https://www.dnd5eapi.co/api/')
   .then(resp => {
@@ -47,7 +46,10 @@ function handleHeadings(headers) {
     const li = document.createElement('li');
     li.textContent = header.replace(/-/, ' ');
     li.className = header;
-    li.addEventListener('click', () => getSet(header))
+    li.addEventListener('click', () => {
+      Array.from(document.querySelector('#item-list').children).forEach(child => child.remove())
+      getSet(header)
+    })
     document.querySelector('#header-container').appendChild(li);
   })
 }
@@ -60,7 +62,7 @@ function createItem(item) {
       createAbility(item);
       break;
     case 'alignments':
-      //createAlignment
+      createAlignment(item);
       break;
     case 'backgrounds':
       //createBackground
@@ -155,6 +157,19 @@ function createAbility(item) {
   const ability = document.createElement('div')
   ability.append(heading, description, skillList)
   document.querySelector('#item-list').appendChild(ability);
+}
+
+function createAlignment(item) {
+  const heading = document.createElement('h3');
+  heading.textContent = item.name;
+  
+  const description = document.createElement('p');
+  description.textContent = item.desc;
+  
+  const alignment = document.createElement('div');
+  alignment.append(heading, description);
+
+  document.querySelector('#item-list').appendChild(alignment)
 }
 
 document.addEventListener('DOMContentLoaded', () => {
