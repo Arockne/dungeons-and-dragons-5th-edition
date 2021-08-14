@@ -65,7 +65,7 @@ function createItem(item) {
       createAlignment(item);
       break;
     case 'backgrounds':
-      //createBackground
+      //createBackground(item);
       break;
     case 'classes':
       //createClass
@@ -139,23 +139,25 @@ function createAbility(item) {
 
   const description = document.createElement('p');
   description.textContent = item.desc;
-
+  
+  const skillsLabel = document.createElement('h4');
+  skillsLabel.textContent = 'Skills';
+  
   const skillList = document.createElement('ul');
-  skillList.innerHTML = '<li><h4>Skills</h4></li>'
   item.skills.forEach(skill => {
     const li = document.createElement('li');
     li.textContent = skill.name;
     skillList.appendChild(li);
   })
 
-  if (skillList.children.length <= 1) {
+  if (skillList.children.length < 1) {
     const li = document.createElement('li');
     li.innerText = 'None';
     skillList.appendChild(li);
   }
 
   const ability = document.createElement('div')
-  ability.append(heading, description, skillList)
+  ability.append(heading, description, skillsLabel, skillList)
   document.querySelector('#item-list').appendChild(ability);
 }
 
@@ -185,5 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
 //some interactivity is required
 //keep code DRY
 
+//Instead of posting the entire information about all of the items when you click a header
+  //create a bunch of cards
+    //when you click on a card it will give you more information on that item
 
-    //posibly add span for an arrow when li element is clicked it will point down when li element is clicked and point left when subcategories are not shoing
+//some of the information provided, provides a resource with more information on that item
+    
+//This was when I was thinking about putting the sets underneath the headers in the headers column    
+  //posibly add span for an arrow when li element is clicked it will point down when li element is clicked and point left when subcategories are not shoing
