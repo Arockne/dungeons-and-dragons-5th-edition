@@ -216,10 +216,10 @@ function createClass(item) {
   savingThrowsLabel.textContent = ''
 }
 
-function createLevel4Heading(text) {
-  const h4 = document.createElement('h4');
-  h4.textContent = text;
-  return h4;
+function createHeading(text, headingLevel) {
+  const heading = document.createElement(headingLevel);
+  heading.textContent = text;
+  return heading;
 }
 
 function listProficiencyElements(arrayOfObjects) {
