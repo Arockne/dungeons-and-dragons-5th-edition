@@ -2,18 +2,31 @@ body {
   background-color: blanchedalmond;
 }
 
-li {
-  list-style-type: none;
-  width: 20%;
-  cursor: pointer;
-  text-transform: capitalize;
-}
-li:hover {
-  background-color: black;
-  color: white;
+h5 {
+  margin: 0;
 }
 
 #information-container {
   display: flex;
   flex-direction: row;
+}
+
+#header-container {
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+}
+
+#header-container h5 {
+  list-style-type: none;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+#header-container h5:hover {
+  background-color: black;
+  color: white;
+}
+
+#item-list {
+  width: 85%;
 }
