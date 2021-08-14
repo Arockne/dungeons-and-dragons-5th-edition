@@ -79,7 +79,7 @@ function createItem(item) {
       //createBackground(item);
       return;
     case 'classes':
-      //createClass
+      createClass(item)
       return;
     case 'conditions':
       //createCondition
@@ -185,6 +185,47 @@ function createAlignment(item) {
   document.querySelector('#item-list').appendChild(alignment)
 }
 
+
+function createClass(item) {
+  //create label for name
+  //create label for hit die
+  //create list for choice proficiency
+  //create list for class proficiency
+  //list saving throws
+  //list starting equipment
+  //list starting equipment options
+  const {name, hit_die, proficiency_choices, proficiencies, saving_throws, starting_equipment, starting_equipment_options} = item;
+
+  const h3 = document.createElement('h3');
+  h3.textContent = name;
+
+  const die = document.createElement('p');
+  die.textContent = `Hit die: 1d${hit_die}`;
+
+  const skillChoicesLabel = document.createElement('h4')
+  skillChoicesLabel.textContent = 'Proficiency Choices'
+  
+  const {choose, from} = proficiency_choices[0];
+  const choices = document.createElement('p');
+  choices.textContent = `Choose: ${choose}`;
+  const skillChoices = listProficiencyElements(from);
+
+  const classProficienciesLabel = document.createElement('h4');
+  classProficienciesLabel.textContent = 'Class Proficiencies'
+  
+  const classProficiencies = listProficiencyElements(proficiencies);
+
+}
+
+function listProficiencyElements(arrayOfObjects) {
+  const ul = document.createElement('ul');
+  arrayOfObjects.forEach(({name, url}) => {
+    const li = document.createElement('li');
+    li.textContent = name;
+    ul.appendChild(li);
+  })
+  return ul;
+}
 
 //for the item cards
   //each card should be connected
