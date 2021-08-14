@@ -18,7 +18,7 @@ function getSet(header) {
     if (!resp.ok) throw resp
     return resp.json();
   })
-  .then(set => set.results.forEach(getItem))
+  .then(set => set.results.forEach(createNamePlate))
   .catch(err => {
     const message = `Error type: (${err.type}) Fetch from: (${err.url}) Status: (${err.status})`
     document.querySelector('body').textContent = message;
@@ -52,6 +52,17 @@ function handleHeadings(headers) {
     })
     document.querySelector('#header-container').appendChild(li);
   })
+}
+
+function createNamePlate(item) {
+  const itemList = document.querySelector('#item-list');
+  const bttn = document.createElement('button');
+  bttn.textContent = item.name;
+  bttn.addEventListener('click', () => {
+    Array.from(itemList.children).forEach(item => item.remove());
+    getItem(item)
+  });
+  itemList.appendChild(bttn);
 }
 
 function createItem(item) {
@@ -130,10 +141,10 @@ function createItem(item) {
     case 'weapon-properties':
       //createWeaponProperty
       break;
+    }
   }
-}
-
-function createAbility(item) {
+  
+  function createAbility(item) {
   const heading = document.createElement('h3');
   heading.textContent = item.full_name;
 
@@ -174,9 +185,46 @@ function createAlignment(item) {
   document.querySelector('#item-list').appendChild(alignment)
 }
 
+
+//for the item cards
+  //each card should be connected
+  /*
+   _  _ _ _ _ _
+  |_||_|_|_|_|_|
+  */
+  //when you hover over it
+    //it should look like its being pressed
+  //when you click the card it should render more information about that card
+
+
 document.addEventListener('DOMContentLoaded', () => {
   getHeadings();
 })
+
+//createBackground
+//createClass
+//createConditions
+//createDamageType
+//createEquipmentCategory
+//createEquipment
+//createFeats
+//createFeatures
+//createLanguages
+//createMagicItem
+//createMagicSchool
+//createMonster
+//createProficiency
+//createRace
+//createRule
+//createRuleSection
+//createSkill
+//createSpell
+//createSubclass
+//createSubrace
+//createTrait
+//createWeaponProperty
+
+
 
 //REQUIREMENTS
 //app must use HTML/CSS/JS frontend
