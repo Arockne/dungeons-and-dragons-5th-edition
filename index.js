@@ -71,76 +71,76 @@ function createItem(item) {
   switch(header) {
     case 'ability-scores':
       createAbility(item);
-      break;
+      return;
     case 'alignments':
       createAlignment(item);
-      break;
+      return;
     case 'backgrounds':
       //createBackground(item);
-      break;
+      return;
     case 'classes':
       //createClass
-      break;
+      return;
     case 'conditions':
       //createCondition
-      break;
+      return;
     case 'damage-types':
       //createDamageType
-      break;
+      return;
     case 'equipment-categories':
       //createEquipmentCategory
-      break;
+      return;
     case 'equipment':
       //createEquipment
-      break;
+      return;
     case 'feats':
       //createFeat
-      break;
+      return;
     case 'features':
       //createFeature
-      break;
+      return;
     case 'languages':
       //createLanguage
-      break;
+      return;
     case 'magic-items':
       //createMagicItem;
-      break;
+      return;
     case 'magic-schools':
       //createMagicSchool
-      break;
+      return;
     case 'monsters':
       //createMonster
-      break;
+      return;
     case 'proficiencies':
       //createProficiency
-      break;
+      return;
     case 'races':
       //createRace
-      break;
+      return;
     case 'rules':
       //createRule
-      break;
+      return;
     case 'rule-sections':
       //createRuleSection
-      break;
+      return;
     case 'skills':
       //createSkill
-      break;
+      return;
     case 'spells':
       //createSpell
-      break;
+      return;
     case 'subclasses':
       //createSubclass
-      break;
+      return;
     case 'subraces':
       //createSubrace
-      break;
+      return;
     case 'traits':
       //createTrait
-      break;
+      return;
     case 'weapon-properties':
       //createWeaponProperty
-      break;
+      return;
     }
   }
   
