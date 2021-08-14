@@ -196,39 +196,73 @@ function createClass(item) {
   //list starting equipment options
   const {name, hit_die, proficiency_choices, proficiencies, saving_throws, starting_equipment, starting_equipment_options} = item;
 
-  const h3 = document.createElement('h3');
-  h3.textContent = name;
+  const title = createHeadingWithText(name, 'h3')
 
-  const die = document.createElement('p');
-  die.textContent = `Hit die: 1d${hit_die}`;
+  const die = createParagraphWithText(`Hit die: 1d${hit_die}`);
 
-  const skillChoicesLabel = createLevel4Label('Proficiency Choices')
+  const skillChoicesLabel = createHeadingWithText('Proficiency Choices', 'h4')
   
   const {choose, from} = proficiency_choices[0];
-  const choices = document.createElement('p');
-  choices.textContent = `Choose: ${choose}`;
+  const choices = createParagraphWithText(`Choose: ${choose}`);
   const skillChoices = listProficiencyElements(from);
 
-  const classProficienciesLabel = createLevel4Label('Class Proficiencies')
+  const classProficienciesLabel = createHeadingWithText('Class Proficiencies', 'h4')
   const classProficiencies = listProficiencyElements(proficiencies);
 
-  const savingThrowsLabel = document.createElement('h4');
-  savingThrowsLabel.textContent = ''
+  const savingThrowsLabel = createHeadingWithText('Saving Throws', 'h4');
+  const savingThrows = listProficiencyElements(saving_throws);
+
+  const startingEquipmentLabel = createHeadingWithText('Starting Equipment', 'h4');
+  const startingEquipment = listEquipment(starting_equipment);
+
+  const startingEquipmentOptions = createHeadingWithText('Starting Equipment Options', 'h4');
+  const startingEquipment = document.createElement('ul');
+
+  document.querySelector('#item-list').append(title, die, skillChoicesLabel, choices, skillChoices, classProficienciesLabel, classProficiencies, savingThrowsLabel, savingThrows, startingEquipmentLabel, startingEquipment);
 }
 
-function createHeading(text, headingLevel) {
+function listEquipment(arrayOfObjects) {
+  const equipList = document.createElement('ul');
+  arrayOfObjects.forEach(equip => {
+    const {equipment, quantity} = equip;
+    const li = createListElementFromObject(equipment);
+    const ul = document.createElement('ul');
+    const q = createListElementFromText(`Quantity: ${quantity}`);
+    ul.appendChild(q);
+    li.appendChild(ul);
+    equipList.appendChild(li);
+  })
+  return equipList;
+}
+
+function createParagraphWithText(text) {
+  const p = document.createElement('p');
+  p.textContent = text;
+  return p;
+}
+
+function createHeadingWithText(text, headingLevel) {
   const heading = document.createElement(headingLevel);
   heading.textContent = text;
   return heading;
 }
 
+function createListElementFromText(text) {
+  const li = document.createElement('li');
+  li.textContent = text;
+  return li;
+}
+
+function createListElementFromObject({name, url}) {
+  const li = document.createElement('li');
+  li.textContent = name;
+  return li
+}
+
 function listProficiencyElements(arrayOfObjects) {
   const ul = document.createElement('ul');
-  arrayOfObjects.forEach(({name, url}) => {
-    const li = document.createElement('li');
-    li.textContent = name;
-    ul.appendChild(li);
-  })
+  const listArrary = arrayOfObjects.map(createListElementFromObject);
+  listArrary.forEach(li => ul.appendChild(li));
   return ul;
 }
 
