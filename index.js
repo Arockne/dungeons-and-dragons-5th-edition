@@ -43,7 +43,7 @@ function getItem(set) {
 function handleHeadings(headers) {
   const headerArr = Object.keys(headers);
   headerArr.forEach(header => {
-    const li = document.createElement('li');
+    const li = document.createElement('h5');
     li.textContent = header.replace(/-/, ' ');
     li.className = header;
     li.addEventListener('click', () => {
