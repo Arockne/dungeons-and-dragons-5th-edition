@@ -202,19 +202,24 @@ function createClass(item) {
   const die = document.createElement('p');
   die.textContent = `Hit die: 1d${hit_die}`;
 
-  const skillChoicesLabel = document.createElement('h4')
-  skillChoicesLabel.textContent = 'Proficiency Choices'
+  const skillChoicesLabel = createLevel4Label('Proficiency Choices')
   
   const {choose, from} = proficiency_choices[0];
   const choices = document.createElement('p');
   choices.textContent = `Choose: ${choose}`;
   const skillChoices = listProficiencyElements(from);
 
-  const classProficienciesLabel = document.createElement('h4');
-  classProficienciesLabel.textContent = 'Class Proficiencies'
-  
+  const classProficienciesLabel = createLevel4Label('Class Proficiencies')
   const classProficiencies = listProficiencyElements(proficiencies);
 
+  const savingThrowsLabel = document.createElement('h4');
+  savingThrowsLabel.textContent = ''
+}
+
+function createLevel4Heading(text) {
+  const h4 = document.createElement('h4');
+  h4.textContent = text;
+  return h4;
 }
 
 function listProficiencyElements(arrayOfObjects) {
